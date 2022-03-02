@@ -65,7 +65,7 @@ flutter:
   assets:
     #IMAGENS
     - imagens/joken_po/
-    - imagens/joken_po/branco.JPG
+    - imagens/joken_po/branco.png
     - imagens/
     #SONS
     - assets/sons/

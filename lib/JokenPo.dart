@@ -33,7 +33,7 @@ class _JokenPoState extends State<JokenPo> {
   String _titulo = "Escolhas: \n  joken Po  Vs   usuário";
   var _imagemAPP = const AssetImage("imagens/joken_po/padrao.png");
   var _imagemUSU = const AssetImage("imagens/joken_po/padrao.png");
-  var _wins = const AssetImage("imagens/joken_po/branco.JPG");
+  var _wins = const AssetImage("imagens/joken_po/branco.png");
 
   var _resultado = "Resultado: Boa Sorte!";
   int _vitoriaUSU = 0;
@@ -103,7 +103,7 @@ class _JokenPoState extends State<JokenPo> {
       setState(() {
         _vitoriaAPP++;
         _resultado = ("Você Perdeu, Tente Novamente!! :/");
-        _wins = const AssetImage("imagens/joken_po/lose.gif");
+        _wins =  AssetImage("imagens/joken_po/lose.gif",);
         _executar("Female");
       });
     }else{
@@ -128,7 +128,7 @@ class _JokenPoState extends State<JokenPo> {
       _imagemAPP = const AssetImage("imagens/joken_po/padrao.png");
       _imagemUSU = const AssetImage("imagens/joken_po/padrao.png");
       _resultado = "Boa Sorte!";
-      _wins = const AssetImage("imagens/joken_po/branco.JPG");
+      _wins = const AssetImage("imagens/joken_po/branco.png");
       _vitoriaUSU = 0;
       _vitoriaAPP = 0;
       _titulo = "Escolhas: \n  Joken Po  Vs   Usuário";
@@ -137,146 +137,173 @@ class _JokenPoState extends State<JokenPo> {
 
   }
 
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
 
-
         appBar: AppBar(
-          title: const Text("JOGO : Pedra, papel ou tesoura"),
+          backgroundColor: Color(0x770C9E0C),
+          title: Center(
+           child: Text("JOGO : Pedra, papel ou tesoura",
+           style: TextStyle(
+               fontSize: 20,
+             fontWeight: FontWeight.bold,
+               color:  Colors.cyanAccent
+           ),),
+          ),
 
         ),
 
-        body: SingleChildScrollView(
+        body: Container(padding: EdgeInsets.all(10),
+          height: 800,
+          width: double.infinity,
 
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          //background de imagem de fundo do container
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("imagens/fundo.jpg"),
+                fit: BoxFit.cover,
+              )),
 
-            children: <Widget> [
-              /* Escopo do Projeto
+          child: SingleChildScrollView(
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+
+              children: <Widget> [
+                /* Escopo do Projeto
                     1º Passo - text
                     2º Passo - imagem
                     3º Passo - text resultado
                     4º Passo - linha 3 imagens
                     5º Imagem Logo BRN (Bruno Salgado TI)
                     */
-              Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 10),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 10),
 
-                child: Text(
-                  _titulo,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                  child: Text(
+                    _titulo,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.cyanAccent,
+                    ),
                   ),
                 ),
-              ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children:[
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children:[
 
-                    Image(image: _imagemAPP),
-                    Image(image: _imagemUSU),
+                      Image(image: _imagemAPP),
+                      Image(image: _imagemUSU),
+                    ]
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 20, bottom: 20),
 
-                  ]
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 10),
-
-                child: Text(
-                  "Escolha uma opção abaixo:",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                  child: Text(
+                    "Escolha uma opção abaixo:",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.cyanAccent,
+                    ),
                   ),
                 ),
-              ),
 
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-                  children: [
+                    children: [
 
-                    GestureDetector(
-                      onTap:  () => _opcaoSelecionada("pedra"),
-                      child: Image.asset("imagens/joken_po/pedra.png", height: 100,),
-                    ),
-
-                    GestureDetector(
-                      onTap:  () => _opcaoSelecionada("papel") ,
-                      child: Image.asset("imagens/joken_po/papel.png", height: 100,) ,
-                    ),
-
-                    GestureDetector(
-                      onTap:  () => _opcaoSelecionada("tesoura"),
-                      child: Image.asset("imagens/joken_po/tesoura.png", height: 100,),
-                    ),
-
-                  ]
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(top: 5),
-
-                child: Text(
-                  "Resultado: " + _resultado,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget> [
-
-                  Image(image: _wins),
-
-                ],
-              ),
-
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget> [
-
-                    Image.asset("imagens/logobrn.png",
-                      height: 90, width: 120,
-                    ),
-
-                    //NOVO BUTTON
-                    ElevatedButton(
-                      onPressed: _limpar,
-
-                      child: const Text(
-                        "Reiniciar",
-                        style: TextStyle(
-                          fontSize: 20,
-                          decorationColor: Colors.black,
+                      GestureDetector(
+                        onTap:  () => _opcaoSelecionada("pedra"),
+                        child: Image.asset("imagens/joken_po/pedra.png",
+                          height: 100,
                         ),
                       ),
 
-                      //ElevatedButton CUSTOMIZAÇÃO
-
-                      style: ElevatedButton.styleFrom(
-                          shadowColor: Colors.amber,
-                          elevation: 20,
-                          padding: const EdgeInsets.all(10),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          )
+                      GestureDetector(
+                        onTap:  () => _opcaoSelecionada("papel") ,
+                        child: Image.asset("imagens/joken_po/papel.png",
+                          height: 100,
+                        ) ,
                       ),
-                    ),
 
-                  ]),
-            ],),
+                      GestureDetector(
+                        onTap:  () => _opcaoSelecionada("tesoura"),
+                        child: Image.asset("imagens/joken_po/tesoura.png",
+                          height: 100,
+                        ),
+                      ),
+
+                    ]
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 20),
+
+                  child: Text(
+                    "Resultado: " + _resultado,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.cyanAccent,
+                    ),
+                  ),
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget> [
+
+                    Image(image: _wins),
+
+                  ],
+                ),
+
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget> [
+
+                      Image.asset("imagens/logobrn.png",
+                        height: 90,
+                        width: 120,
+                      ),
+
+                      //NOVO BUTTON
+                      ElevatedButton(
+                        onPressed: _limpar,
+
+                        child: const Text(
+                          "Reiniciar",
+                          style: TextStyle(
+                            fontSize: 20,
+                            decorationColor: Colors.black,
+                          ),
+                        ),
+
+                        //ElevatedButton CUSTOMIZAÇÃO
+
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xC64BA149), //Cor de fundo ElevatedButton
+                            shadowColor: Colors.red,
+                            elevation: 15,
+                            padding: const EdgeInsets.all(10),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)
+                            )
+                        ),
+                      ),
+
+                    ]),
+              ],),
+
+          ),
 
         )
 
